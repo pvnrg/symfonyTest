@@ -46,15 +46,27 @@ class NotesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findByFields($value): array
+    public function findByFields($filter, $user_id): array
     {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $q = $this->createQueryBuilder('n')->where("n.user_id = '".$user_id."'");
+
+        if(!empty($filter['search']))
+        {
+            $q->andWhere("n.title like '%".$filter['search']."%' OR n.content like '%".$filter['search']."%'"); // OR n.content like '%'".$filter['search']."'%'
+        }
+
+        if(!empty($filter['category']))
+        {
+            $q->andWhere("n.category = '".$filter['category']."'");
+        }
+
+        if(!empty($filter['status']))
+        {
+            $q->andWhere("n.status = '".$filter['status']."'");
+        }
+        
+        $res = $q->orderBy('n.id', 'DESC')
+        ->getQuery()->getResult();
+        return $res;
     }
 }

@@ -51,13 +51,13 @@ class NotesController extends AbstractController
             // if(!empty($_GET['search'])) {
             //     $arr['content'] = '%'.$_GET['search'].'%';
             // }
-            if(!empty($_GET['status'])) {
-                $arr['status'] = $_GET['status'];
-            }
-            // $entityManager = $notesRepository->findByFields($_GET, $session->get('user_auth'));
+            // if(!empty($_GET['status'])) {
+            //     $arr['status'] = $_GET['status'];
+            // }
+            $data = $notesRepository->findByFields($_GET, $session->get('user_auth'));
 
             $contents = $this->renderView('notes/list.html.twig', [
-                'notes' => $notesRepository->findBy($arr)
+                'notes' => $data
             ]);
             return new Response($contents);
         } else {

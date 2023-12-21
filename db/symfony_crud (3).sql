@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2023 at 03:13 PM
+-- Generation Time: Dec 21, 2023 at 03:38 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,10 +41,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `email`, `roles`, `password`, `status`, `otp`) VALUES
-(6, 'pavan@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '1', ''),
-(7, 'snehal@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '0', '8463'),
-(8, 'asas@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '0', '3172'),
-(9, 'snehal1@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '1', '');
+(9, 'pavan@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '1', ''),
+(11, 'p1@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '1', '');
 
 -- --------------------------------------------------------
 
@@ -130,8 +128,10 @@ INSERT INTO `notes` (`id`, `category_id`, `title`, `content`, `status`, `created
 (1, 2, 'Note 1', 'Note Content 1', 'new', NULL, NULL, '9'),
 (2, 1, 'ss', 'ddd', 'new', NULL, NULL, '9'),
 (3, 1, 'new note test', 'new note content test', 'done', NULL, NULL, '9'),
-(5, 2, 'note 1', 'note 1', 'todo', NULL, NULL, '9'),
-(6, 2, 'note 1.1', 'note 1', 'todo', NULL, NULL, '9');
+(5, 2, 'note 1', 'note 1', 'todo', NULL, NULL, '8'),
+(6, 2, 'note 1.1', 'note 1', 'todo', NULL, NULL, '9'),
+(8, 1, 'note 1', 'note content 1', 'new', NULL, NULL, '11'),
+(9, 2, 'note 2', 'note 2', 'todo', NULL, NULL, '11');
 
 --
 -- Indexes for dumped tables
@@ -180,7 +180,7 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -198,7 +198,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
