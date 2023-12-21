@@ -3,7 +3,6 @@
 namespace App\Controller;
  
 use App\Entity\Notes;
-use App\Form\NotesType;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\NotesRepository;
 use App\Repository\CategoryRepository;
@@ -93,7 +92,6 @@ class NotesController extends AbstractController
             
             $entityManager = $doctrine->getManager();
             $notes = $notesRepository->find($request->GET('id'));
-            // print_r($notes->Category);exit;
             $category = $categoryRepository->findAll();
 
             if (!empty($_POST)) {
@@ -114,20 +112,6 @@ class NotesController extends AbstractController
                 'note' => $notes,
                 'category' => $category
             ]);
-            
-            // $form = $this->createForm(NotesType::class, $notes);
-            // $form->handleRequest($request);
-    
-            // if ($form->isSubmitted() && $form->isValid()) {
-            //     $this->getDoctrine()->getManager()->flush();
-    
-            //     return $this->redirectToRoute('notes', [], Response::HTTP_SEE_OTHER);
-            // }
-    
-            // return $this->renderForm('notes/edit.html.twig', [
-            //     'notes' => $notes,
-            //     'form' => $form,
-            // ]);
         } else {
             return $this->redirectToRoute('notes', [], Response::HTTP_SEE_OTHER);
         }

@@ -71,18 +71,5 @@ class SecurityController extends AbstractController
             $this->addFlash('danger', 'Email is not exist!');
             return $this->redirectToRoute('login', [], Response::HTTP_SEE_OTHER);
         }
-
-
-
-
-        // $this->checkStatus($email);
-
-        // $request->getSession()->set(Security::LAST_USERNAME, $email);
-
-        // return new RedirectResponse('notes');
-        // return new Passport(
-        //     new UserBadge($email),
-        //     new PasswordCredentials($request->request->get('password', ''))
-        // );
     }
 }
