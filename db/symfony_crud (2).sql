@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2023 at 06:28 AM
+-- Generation Time: Dec 21, 2023 at 03:13 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,15 +32,19 @@ CREATE TABLE `admin` (
   `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '(DC2Type:json)' CHECK (json_valid(`roles`)),
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `email`, `roles`, `password`, `status`) VALUES
-(1, 'pavan@gmail.com', '[]', '$2y$13$QIdwIQJZEIP/KtreWKyTc.HbdF4Q.ogTdkfmfO69.2EErQ84Ycktm', NULL);
+INSERT INTO `admin` (`id`, `email`, `roles`, `password`, `status`, `otp`) VALUES
+(6, 'pavan@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '1', ''),
+(7, 'snehal@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '0', '8463'),
+(8, 'asas@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '0', '3172'),
+(9, 'snehal1@gmail.com', '[]', '4297f44b13955235245b2497399d7a93', '1', '');
 
 -- --------------------------------------------------------
 
@@ -82,7 +86,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20231221004800', '2023-12-21 01:53:14', 142),
 ('DoctrineMigrations\\Version20231221024621', '2023-12-21 03:46:34', 79),
 ('DoctrineMigrations\\Version20231221035848', '2023-12-21 04:58:54', 65),
-('DoctrineMigrations\\Version20231221044307', '2023-12-21 05:43:14', 16);
+('DoctrineMigrations\\Version20231221044307', '2023-12-21 05:43:14', 16),
+('DoctrineMigrations\\Version20231221114229', '2023-12-21 12:42:34', 43);
 
 -- --------------------------------------------------------
 
@@ -122,8 +127,11 @@ CREATE TABLE `notes` (
 --
 
 INSERT INTO `notes` (`id`, `category_id`, `title`, `content`, `status`, `created_at`, `updated_at`, `user_id`) VALUES
-(1, 2, 'Note 1', 'Note Content 1', 'new', NULL, NULL, '1'),
-(2, 1, 'ss', 'ddd', 'new', NULL, NULL, NULL);
+(1, 2, 'Note 1', 'Note Content 1', 'new', NULL, NULL, '9'),
+(2, 1, 'ss', 'ddd', 'new', NULL, NULL, '9'),
+(3, 1, 'new note test', 'new note content test', 'done', NULL, NULL, '9'),
+(5, 2, 'note 1', 'note 1', 'todo', NULL, NULL, '9'),
+(6, 2, 'note 1.1', 'note 1', 'todo', NULL, NULL, '9');
 
 --
 -- Indexes for dumped tables
@@ -172,7 +180,7 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -190,7 +198,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
