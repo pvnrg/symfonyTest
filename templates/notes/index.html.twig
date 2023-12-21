@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}Notes index{% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Notes</h2>
+        
+        <div class="row mb-3">
+            <div class="col-4">
+                <select name="status" id="notes_status" class="form-control">
+                    <option value="">Select Status</option>
+                    <option value="new">New</option>
+                    <option value="todo">Todo</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <select name="notes_category" id="notes_category" class="form-control">
+                    <option value="">Select Category</option>
+                    {% for cat in category %}
+                        <option value={{ cat.id }}>{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-4">
+                <input type="text" id="note_search" name="search" maxlength="255" class="form-control" placeholder="Search by title/content">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('notes_new') }}"> 
+                    Create
+                </a>
+                <a class="btn btn-outline-primary" href="{{ path('app_logout') }}" style="float:right;"> 
+                    Logout
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th width="240px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id = "notes_tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script language = "javascript">  
+        $(document).on('keyup', '#note_search', function() {
+            load_data();
+        }); 
+        $(document).on('change', '#notes_category', function() {
+            load_data();
+        }); 
+        $(document).on('change', '#notes_status', function() {
+            load_data();
+        }); 
+
+      $(document).ready(function(){   
+        load_data();
+      });  
+
+      function load_data() {
+        $('#notes_tbody').html('<tr><td colspan="5"><p style="color: #676767;margin: 20px;display: flex;justify-content: center;">Loading...</p><td><tr>');  
+        
+        $.ajax({  
+            url:        '{{path("notes_list")}}',  
+            type:       'GET',   
+            data: {
+                search:$("#note_search").val(),
+                category:$("#notes_category").val(),
+                status:$("#notes_status").val()
+            },
+            async:      true,  
+            success: function(data, status) {  
+                $('#notes_tbody').html(data);  
+            },  
+            error : function(xhr, textStatus, errorThrown) {  
+                alert('Ajax request failed.');  
+            }  
+        });
+      }
+   </script>
+ 
+{% endblock %}

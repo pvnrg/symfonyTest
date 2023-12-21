@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}Edit Note{% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Edit Note</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('notes') }}"> 
+                    View All Notes
+                </a>
+            </div>
+            <div class="card-body">
+                {% include 'notes/_form.html.twig' with {'button_label': 'Update Note', 'button_color': 'btn-outline-success'}  %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

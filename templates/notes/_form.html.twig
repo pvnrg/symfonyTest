@@ -1,0 +1,25 @@
+<form name="notes" method="post">
+    <div class="form-group">
+        <div><label for="notes_title">Title</label><input type="text" id="notes_title" name="title" maxlength="255" class="form-control" value="{{note.title}}"></div>
+    </div>
+    <div class="form-group">
+        <div><label for="notes_content">Content</label><textarea id="notes_content" name="content" class="form-control">{{note.content}}</textarea></div>
+    </div>
+    <div class="form-group">
+        <div><label for="notes_status">Status</label>
+        <select name="status" class="form-control">
+            <option value="new" {{note.status == "new" ? "selected" : ""}}>New</option>
+            <option value="todo" {{note.status == "todo" ? "selected" : ""}}>Todo</option>
+            <option value="done" {{note.status == "done" ? "selected" : ""}}>Done</option>
+        </select>
+    </div>
+    <div class="form-group">
+    <label for="notes_category">Category</label>
+        <select name="category" class="form-control">
+         {% for cat in category %}
+            <option value={{ cat.id }} {{(note.Category != null)  ? ((note.Category.id == cat.id) ? "selected" : "") : ""}}>{{ cat.name }}</option>
+        {% endfor %}
+        </select>
+    </div>
+    <button class="btn btn-outline-primary  mt-3">Save Project</button>
+</form>

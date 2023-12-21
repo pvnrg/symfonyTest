@@ -1,0 +1,49 @@
+index:
+    path: /
+    controller: App\Controller\SecurityController::login
+    
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+
+login_auth:
+    path: /login_auth
+    controller: App\Controller\SecurityController::login_auth
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+    
+register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+        
+register_verification:
+    path: /register_verification/{otp}
+    controller: App\Controller\RegistrationController::register_verification
+
+notes:
+    path: /notes
+    controller: App\Controller\NotesController::index
+
+notes_list:
+    path: /notes_list
+    controller: App\Controller\NotesController::notes_list
+
+notes_new:
+    path: /notes/new
+    controller: App\Controller\NotesController::new
+
+notes_show:
+    path: /notes/show
+    controller: App\Controller\NotesController::show
+
+notes_edit:
+    path: /notes/edit/{id}
+    controller: App\Controller\NotesController::edit
+
+notes_delete:
+    path: /notes/delete/{id}
+    controller: App\Controller\NotesController::delete
